@@ -2,6 +2,37 @@
 # VALIDACIONES DEL SISTEMA
 # ============================
 
+
+#validar que el usuario ingrese bien la opcion del menu
+def validar_opcion_menu(menu):
+    while True:
+        try:
+            opcion = int(input("Seleccione una opción: "))
+            
+            if opcion in menu:
+                return opcion
+            else:
+                print("Opción inválida. Intente nuevamente.")
+                
+        except ValueError:
+            print("Error: debe ingresar un número entero.")
+            
+#Validar que se ingrse bien la canrtidad de porciones
+def validar_cantidad_porciones(maximo):
+    while True:
+        try:
+            cantidad = int(input(f"cantidad de porciones (1 a {maximo}):"))
+            
+            if 1 <= cantidad <= maximo:
+                return cantidad
+            else:
+                print(f"Error: ingrese un número entre 1 y {maximo}.")
+                
+        except ValueError:
+            print("Error: debe ingresar un número entero.")
+        
+                
+            
 # Función para validar que el usuario ingrese un texto.
 # No permite números ni campos vacíos.
 def validar_texto(mensaje):
@@ -32,18 +63,19 @@ def validar_entero(mensaje):
 
 
 # Función para validar números decimales positivos.
-def validar_decimal(mensaje):
-    while True:
-        try:
-            numero = float(input(mensaje))
+#ya no es necesaria porque se usa el menu de pizzas
+#def validar_decimal(mensaje):
+#    while True:
+#        try:
+#            numero = float(input(mensaje))
 
-            if numero > 0:
-                return numero
-            else:
-                print("Error: ingrese un valor mayor que cero.")
+#            if numero > 0:
+#                return numero
+#            else:
+#                print("Error: ingrese un valor mayor que cero.")
 
-        except ValueError:
-            print("Error: debe ingresar un número válido.")
+#        except ValueError:
+#            print("Error: debe ingresar un número válido.")
 
 
 # Valida teléfonos.

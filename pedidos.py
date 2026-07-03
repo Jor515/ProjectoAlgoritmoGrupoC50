@@ -6,7 +6,23 @@ pedidos = []
 # Variable para generar IDs automáticos
 ultimo_id = 1
 
+#menu de pizzas xd
+menu_pizzas = {
+    1: {"nombre": "Muzzarella", "precio_porcion": 350},
+    2: {"nombre": "Napolitana", "precio_porcion": 420},
+    3: {"nombre": "Fugazzeta", "precio_porcion": 400},
+    4: {"nombre": "Cuatro Quesos", "precio_porcion": 480},
+    5: {"nombre": "Especial", "precio_porcion": 520},
+}
+#menu para seleccionar pizzas
+def mostrar_menu_pizzas():
+    print("\n--- Menú de Pizzas ---")
+    for numero, pizza in menu_pizzas.items():
+        print(f"{numero}. {pizza['nombre']} - ${pizza['precio_porcion']} por porción")
+        
+Porciones_maxima = 12
 
+opcion = validar_opcion_menu(menu_pizzas)
 # --------------------------------------------------
 # Calcula el costo de envío según la zona
 # --------------------------------------------------
@@ -53,25 +69,21 @@ def registrar_pedido():
     subtotal = 0
 
     while True:
+        print("\nIngrese los detalles del producto:")
+        mostrar_menu_pizzas()
+        opcion = validar_opcion_menu(menu_pizzas)       
+        Tipo_pizza = menu_pizzas[opcion]
+        
+        print(f"\n{Tipo_pizza['nombre']} se vende por porción")
+        porciones = validar_cantidad_porciones(Porciones_maxima)
+        
+        total_producto = porciones * Tipo_pizza["precio_porcion"]
 
-        print("\n--- Agregar producto ---")
-
-        nombre_producto = input("Producto: ").title()
-
-        while nombre_producto == "":
-            print("Ingrese un nombre válido.")
-            nombre_producto = input("Producto: ").title()
-
-        cantidad = validar_entero("Cantidad: ")
-
-        precio = validar_decimal("Precio unitario: ")
-
-        total_producto = cantidad * precio
 
         producto = {
-            "nombre": nombre_producto,
-            "cantidad": cantidad,
-            "precio": precio,
+            "nombre": Tipo_pizza["nombre"],
+            "porciones": porciones,
+            "precio": Tipo_pizza["precio_porcion"],
             "total": total_producto
         }
 
@@ -94,7 +106,7 @@ def registrar_pedido():
         "telefono": telefono,
         "direccion": direccion,
         "zona": zona,
-        "productos": productos,
+        "productos": Tipo_pizza,
         "subtotal": subtotal,
         "envio": envio,
         "total": total,
@@ -136,8 +148,8 @@ def mostrar_pedidos():
 
             print(
                 f"- {producto['nombre']} | "
-                f"{producto['cantidad']} x "
-                f"${producto['precio']:.2f} = "
+                f"{producto['porciones']} porciones x "
+                f"${producto['precio_porcion']:.2f} = "
                 f"${producto['total']:.2f}"
             )
 

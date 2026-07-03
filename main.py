@@ -1,8 +1,3 @@
-# ==========================================
-# SISTEMA DE DELIVERY
-# Programa principal
-# ==========================================
-
 from pedidos import (
     registrar_pedido,
     mostrar_pedidos,
@@ -13,10 +8,6 @@ from pedidos import (
 
 from estadisticas import mostrar_estadisticas
 
-
-# ------------------------------------------
-# Menú principal
-# ------------------------------------------
 def mostrar_menu():
 
     print("\n")
@@ -34,10 +25,7 @@ def mostrar_menu():
 
     print("=" * 40)
 
-
-# ------------------------------------------
-# Programa principal
-# ------------------------------------------
+# Programa
 def main():
 
     while True:
@@ -82,7 +70,4 @@ def main():
             print("\nOpción inválida. Intente nuevamente.")
 
 
-# ------------------------------------------
-# Inicio del programa
-# ------------------------------------------
 main()

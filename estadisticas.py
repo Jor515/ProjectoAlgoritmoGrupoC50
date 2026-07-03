@@ -1,4 +1,4 @@
-from pedidos import pedidos
+from pedidos import pedidos, menu_pizzas
 
 
 # --------------------------------------------------
@@ -19,6 +19,8 @@ def mostrar_estadisticas():
     cancelados = 0
 
     recaudacion = 0
+    
+    ventas_por_pizza = {pizza["nombre"]: 0 for pizza in menu_pizzas.values()}
 
     zonas = {
         "Centro": 0,
@@ -50,8 +52,23 @@ def mostrar_estadisticas():
 
         # Contar pedidos por zona
         zonas[pedido["zona"]] += 1
+        
+        #contar porciones vendidas por tipo de pizza
+        for producto in pedido["productos"]:
+            if producto["nombre"] in ventas_por_pizza:
+                ventas_por_pizza[producto["nombre"]] += producto["porciones"]
 
     promedio = recaudacion / total_pedidos
+    
+    #Buscar la pizza más vendida
+    pizza_mas_vendida = ""
+    mayor_ventas = 0
+    
+    for nombre_pizza, porciones in ventas_por_pizza.items():
+        if porciones > mayor_ventas:
+            mayor_ventas = porciones
+            pizza_mas_vendida = nombre_pizza
+    
 
     # Buscar la zona con más pedidos
     zona_mayor = ""
@@ -67,7 +84,15 @@ def mostrar_estadisticas():
     # Mostrar resultados
 
     print("\n========== ESTADÍSTICAS ==========")
+    
+    print("-----------------------------------")
+    print("Porciones vendidas por tipo de pizza:")
 
+    for pizza, porciones in ventas_por_pizza.items():
+        print(f"{pizza}: {porciones}")
+
+    print("-----------------------------------")
+    
     print(f"Pedidos registrados : {total_pedidos}")
     print(f"Pendientes          : {pendientes}")
     print(f"En preparación      : {en_preparacion}")
@@ -91,3 +116,4 @@ def mostrar_estadisticas():
     print("-----------------------------------")
 
     print("Zona con más pedidos:", zona_mayor)
+    print("Pizza más vendida:", pizza_mas_vendida)
