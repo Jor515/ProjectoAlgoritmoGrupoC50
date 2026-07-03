@@ -12,7 +12,7 @@ def mostrar_menu():
 
     print("\n")
     print("=" * 40)
-    print("      DELIVERY EXPRESS")
+    print("      PIZZA EXPRESS DELIVERY      ")
     print("=" * 40)
 
     print("1. Registrar pedido")

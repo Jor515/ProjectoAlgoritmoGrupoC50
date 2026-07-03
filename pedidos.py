@@ -22,7 +22,6 @@ def mostrar_menu_pizzas():
         
 Porciones_maxima = 12
 
-opcion = validar_opcion_menu(menu_pizzas)
 # --------------------------------------------------
 # Calcula el costo de envío según la zona
 # --------------------------------------------------
@@ -106,7 +105,7 @@ def registrar_pedido():
         "telefono": telefono,
         "direccion": direccion,
         "zona": zona,
-        "productos": Tipo_pizza,
+        "productos": productos,
         "subtotal": subtotal,
         "envio": envio,
         "total": total,
@@ -149,7 +148,7 @@ def mostrar_pedidos():
             print(
                 f"- {producto['nombre']} | "
                 f"{producto['porciones']} porciones x "
-                f"${producto['precio_porcion']:.2f} = "
+                f"${producto['precio']:.2f} = "
                 f"${producto['total']:.2f}"
             )
 
