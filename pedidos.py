@@ -6,7 +6,18 @@ pedidos = []
 # Variable para generar IDs automáticos
 ultimo_id = 1
 
-#menu de pizzas xd
+# zonas de entrega
+zonas_envio = {
+    1: {"nombre": "Centro", "costo_envio": 800},
+    2: {"nombre": "Barrio San Martin", "costo_envio": 1200},
+    3: {"nombre": "Villa Rio Negro", "costo_envio": 1500},
+    4: {"nombre": "400 Viviendas", "costo_envio": 1800},
+    5: {"nombre": "Barranqueras", "costo_envio": 2200},
+ }
+#def calcular_envio(zona):
+#    return zonas_envio[zona]["costo_envio"]
+
+# menu de pizzas
 menu_pizzas = {
     1: {"nombre": "Muzzarella", "precio_porcion": 350},
     2: {"nombre": "Napolitana", "precio_porcion": 420},
@@ -14,6 +25,7 @@ menu_pizzas = {
     4: {"nombre": "Cuatro Quesos", "precio_porcion": 480},
     5: {"nombre": "Especial", "precio_porcion": 520},
 }
+
 #menu para seleccionar pizzas
 def mostrar_menu_pizzas():
     print("\n--- Menú de Pizzas ---")
@@ -22,30 +34,30 @@ def mostrar_menu_pizzas():
         
 Porciones_maxima = 12
 
-# --------------------------------------------------
+def mostrar_menu_zonas():
+    print("\n--- Zonas de Entrega ---")
+    for numero, zona in zonas_envio.items():
+        print(f"{numero}. {zona['nombre']} - Costo de envío: ${zona['costo_envio']}")
+        
 # Calcula el costo de envío según la zona
-# --------------------------------------------------
-def calcular_envio(zona):
+#def calcular_envio(zona):
 
-    if zona == "Centro":
-        return 1000
+#    if zona == "Centro":
+#        return 1000
 
-    elif zona == "Norte":
-        return 1500
+#    elif zona == "Norte":
+#        return 1500
 
-    elif zona == "Sur":
-        return 1800
+#    elif zona == "Sur":
+#        return 1800
 
-    elif zona == "Este":
-        return 1600
+#    elif zona == "Este":
+#        return 1600
 
-    elif zona == "Oeste":
-        return 1700
+#    elif zona == "Oeste":
+#        return 1700
 
-
-# --------------------------------------------------
 # Registrar un pedido
-# --------------------------------------------------
 def registrar_pedido():
 
     global ultimo_id
@@ -61,7 +73,14 @@ def registrar_pedido():
         print("La dirección no puede estar vacía.")
         direccion = input("Dirección: ").strip()
 
-    zona = validar_zona()
+   # zona = validar_zona(zonas_envio)
+    mostrar_menu_zonas()
+    opcion_zona = validar_opcion_menu(zonas_envio)
+    zona_elegida = zonas_envio[opcion_zona]
+   
+    zona = zona_elegida["nombre"]
+    envio = zona_elegida["costo_envio"]
+   
 
     productos = []
 
@@ -95,7 +114,7 @@ def registrar_pedido():
         if seguir != "S":
             break
 
-    envio = calcular_envio(zona)
+#    envio = calcular_envio(zona)
 
     total = subtotal + envio
 
@@ -119,10 +138,7 @@ def registrar_pedido():
 
     ultimo_id += 1
 
-
-# --------------------------------------------------
 # Mostrar todos los pedidos
-# --------------------------------------------------
 def mostrar_pedidos():
 
     if len(pedidos) == 0:
@@ -158,9 +174,7 @@ def mostrar_pedidos():
         print("Estado:", pedido["estado"])
 
 
-# --------------------------------------------------
 # Buscar pedido por ID
-# --------------------------------------------------
 def buscar_pedido():
 
     if len(pedidos) == 0:
@@ -186,9 +200,7 @@ def buscar_pedido():
     return None
 
 
-# --------------------------------------------------
 # Cambiar estado
-# --------------------------------------------------
 def cambiar_estado():
 
     pedido = buscar_pedido()
@@ -204,10 +216,7 @@ def cambiar_estado():
 
     print("Estado actualizado correctamente.")
 
-
-# --------------------------------------------------
 # Eliminar pedido
-# --------------------------------------------------
 def eliminar_pedido():
 
     pedido = buscar_pedido()

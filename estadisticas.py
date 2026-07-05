@@ -1,9 +1,9 @@
-from pedidos import pedidos, menu_pizzas
-
+from pedidos import pedidos, menu_pizzas, zonas_envio
 
 # --------------------------------------------------
 # Mostrar estadísticas generales
 # --------------------------------------------------
+
 def mostrar_estadisticas():
 
     if len(pedidos) == 0:
@@ -21,14 +21,13 @@ def mostrar_estadisticas():
     recaudacion = 0
     
     ventas_por_pizza = {pizza["nombre"]: 0 for pizza in menu_pizzas.values()}
+    
+    zonas_contador = {zona: 0 for zona in zonas_envio}
+    
+    for pedido in pedidos:
+        zonas_contador[pedido["zona"]] += 1
 
-    zonas = {
-        "Centro": 0,
-        "Norte": 0,
-        "Sur": 0,
-        "Este": 0,
-        "Oeste": 0
-    }
+  
 
     # Recorrer todos los pedidos
     for pedido in pedidos:
@@ -51,7 +50,7 @@ def mostrar_estadisticas():
             cancelados += 1
 
         # Contar pedidos por zona
-        zonas[pedido["zona"]] += 1
+        zonas_envio[pedido["zona"]] += 1
         
         #contar porciones vendidas por tipo de pizza
         for producto in pedido["productos"]:
@@ -60,7 +59,7 @@ def mostrar_estadisticas():
 
     promedio = recaudacion / total_pedidos
     
-    #Buscar la pizza más vendida
+    # Buscar la pizza más vendida
     pizza_mas_vendida = ""
     mayor_ventas = 0
     
@@ -74,15 +73,14 @@ def mostrar_estadisticas():
     zona_mayor = ""
     mayor = 0
 
-    for zona in zonas:
+    for zona in zonas_envio:
 
-        if zonas[zona] > mayor:
+        if zonas_envio[zona] > mayor:
 
-            mayor = zonas[zona]
+            mayor = zonas_envio[zona]
             zona_mayor = zona
 
     # Mostrar resultados
-
     print("\n========== ESTADÍSTICAS ==========")
     
     print("-----------------------------------")
@@ -109,9 +107,9 @@ def mostrar_estadisticas():
 
     print("Pedidos por zona:")
 
-    for zona in zonas:
+    for zona in zonas_envio:
 
-        print(f"{zona}: {zonas[zona]}")
+        print(f"{zona}: {zonas_envio[zona]}")
 
     print("-----------------------------------")
 

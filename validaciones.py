@@ -62,22 +62,6 @@ def validar_entero(mensaje):
             print("Error: debe ingresar un número entero.")
 
 
-# Función para validar números decimales positivos.
-#ya no es necesaria porque se usa el menu de pizzas
-#def validar_decimal(mensaje):
-#    while True:
-#        try:
-#            numero = float(input(mensaje))
-
-#            if numero > 0:
-#                return numero
-#            else:
-#                print("Error: ingrese un valor mayor que cero.")
-
-#        except ValueError:
-#            print("Error: debe ingresar un número válido.")
-
-
 # Valida teléfonos.
 # Solo acepta números y entre 8 y 15 dígitos.
 def validar_telefono():
@@ -91,23 +75,18 @@ def validar_telefono():
 
 
 # Valida la zona de reparto.
-def validar_zona():
-    zonas = ["Centro", "Norte", "Sur", "Este", "Oeste"]
-
-    while True:
-
-        print("\nZonas disponibles:")
-
-        for zona in zonas:
-            print("-", zona)
-
-        ingreso = input("Zona: ").capitalize()
-
-        if ingreso in zonas:
-            return ingreso
-        else:
-            print("Error: zona inexistente.")
-
+#def validar_zona(zonas_disponibles):
+#    while True:
+#        print("\nZonas disponibles:")
+#        for zona in zonas_disponibles:
+#            print("-", zona)
+            
+#        ingreso = input("zona: ").title()
+        
+#        if ingreso in zonas_disponibles:
+#            return ingreso
+#        else:
+#            print("Error: zona inexistente. Intente nuevamente.")
 
 # Valida estados del pedido.
 def validar_estado():
