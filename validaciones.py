@@ -73,21 +73,6 @@ def validar_telefono():
         else:
             print("Error: teléfono inválido.")
 
-
-# Valida la zona de reparto.
-#def validar_zona(zonas_disponibles):
-#    while True:
-#        print("\nZonas disponibles:")
-#        for zona in zonas_disponibles:
-#            print("-", zona)
-            
-#        ingreso = input("zona: ").title()
-        
-#        if ingreso in zonas_disponibles:
-#            return ingreso
-#        else:
-#            print("Error: zona inexistente. Intente nuevamente.")
-
 # Valida estados del pedido.
 def validar_estado():
     estados = [

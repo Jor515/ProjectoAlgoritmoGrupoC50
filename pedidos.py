@@ -14,8 +14,6 @@ zonas_envio = {
     4: {"nombre": "400 Viviendas", "costo_envio": 1800},
     5: {"nombre": "Barranqueras", "costo_envio": 2200},
  }
-#def calcular_envio(zona):
-#    return zonas_envio[zona]["costo_envio"]
 
 # menu de pizzas
 menu_pizzas = {
@@ -39,24 +37,6 @@ def mostrar_menu_zonas():
     for numero, zona in zonas_envio.items():
         print(f"{numero}. {zona['nombre']} - Costo de envío: ${zona['costo_envio']}")
         
-# Calcula el costo de envío según la zona
-#def calcular_envio(zona):
-
-#    if zona == "Centro":
-#        return 1000
-
-#    elif zona == "Norte":
-#        return 1500
-
-#    elif zona == "Sur":
-#        return 1800
-
-#    elif zona == "Este":
-#        return 1600
-
-#    elif zona == "Oeste":
-#        return 1700
-
 # Registrar un pedido
 def registrar_pedido():
 
@@ -113,8 +93,6 @@ def registrar_pedido():
 
         if seguir != "S":
             break
-
-#    envio = calcular_envio(zona)
 
     total = subtotal + envio
 
