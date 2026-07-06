@@ -47,13 +47,12 @@ def registrar_pedido():
     cliente = validar_texto("Nombre del cliente: ")
     telefono = validar_telefono()
 
-    direccion = input("Dirección: ").strip()
+   # direccion = input("Dirección: ").strip()
 
-    while direccion == "":
-        print("La dirección no puede estar vacía.")
-        direccion = input("Dirección: ").strip()
+   # while direccion == "":
+   #     print("La dirección no puede estar vacía.")
+   #     direccion = input("Dirección: ").strip()
 
-   # zona = validar_zona(zonas_envio)
     mostrar_menu_zonas()
     opcion_zona = validar_opcion_menu(zonas_envio)
     zona_elegida = zonas_envio[opcion_zona]
@@ -61,6 +60,12 @@ def registrar_pedido():
     zona = zona_elegida["nombre"]
     envio = zona_elegida["costo_envio"]
    
+    direccion = input("Dirección: ").strip()
+
+    while direccion == "":
+        print("La dirección no puede estar vacía.")
+        direccion = input("Dirección: ").strip()
+
 
     productos = []
 
