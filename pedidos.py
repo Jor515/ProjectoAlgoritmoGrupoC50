@@ -24,7 +24,7 @@ menu_pizzas = {
     5: {"nombre": "Especial", "precio_porcion": 520},
 }
 
-#menu para seleccionar pizzas
+# menu para seleccionar pizzas
 def mostrar_menu_pizzas():
     print("\n--- Menú de Pizzas ---")
     for numero, pizza in menu_pizzas.items():
@@ -46,12 +46,6 @@ def registrar_pedido():
 
     cliente = validar_texto("Nombre del cliente: ")
     telefono = validar_telefono()
-
-   # direccion = input("Dirección: ").strip()
-
-   # while direccion == "":
-   #     print("La dirección no puede estar vacía.")
-   #     direccion = input("Dirección: ").strip()
 
     mostrar_menu_zonas()
     opcion_zona = validar_opcion_menu(zonas_envio)
