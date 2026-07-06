@@ -22,7 +22,7 @@ def mostrar_estadisticas():
     
     ventas_por_pizza = {pizza["nombre"]: 0 for pizza in menu_pizzas.values()}
     
-    zonas_contador = {zona: 0 for zona in zonas_envio}
+    zonas_contador = {zona["nombre"]: 0 for zona in zonas_envio.values()}
     
     for pedido in pedidos:
         zonas_contador[pedido["zona"]] += 1
