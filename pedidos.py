@@ -1,5 +1,4 @@
 from validaciones import *
-
 # Lista donde se almacenarán todos los pedidos
 pedidos = []
 
