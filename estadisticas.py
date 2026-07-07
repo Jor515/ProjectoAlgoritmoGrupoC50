@@ -24,9 +24,6 @@ def mostrar_estadisticas():
     
     zonas_contador = {zona["nombre"]: 0 for zona in zonas_envio.values()}
     
-    for pedido in pedidos:
-        zonas_contador[pedido["zona"]] += 1
-
   
 
     # Recorrer todos los pedidos
@@ -50,7 +47,7 @@ def mostrar_estadisticas():
             cancelados += 1
 
         # Contar pedidos por zona
-        zonas_envio[pedido["zona"]] += 1
+        zonas_contador[pedido["zona"]] += 1
         
         #contar porciones vendidas por tipo de pizza
         for producto in pedido["productos"]:
