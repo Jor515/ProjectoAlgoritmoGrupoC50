@@ -6,7 +6,7 @@ pedidos = []
 # Variable para generar IDs automáticos
 ultimo_id = 1
 
-# zonas de entrega
+# zonas o barrios de entrega
 zonas_envio = {
     1: {"nombre": "Centro", "costo_envio": 800},
     2: {"nombre": "Barrio San Martin", "costo_envio": 1200},

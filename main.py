@@ -8,6 +8,7 @@ from pedidos import (
 
 from estadisticas import mostrar_estadisticas
 
+# función para mostrar el menú de opciones
 def mostrar_menu():
 
     print("\n")
