@@ -1,8 +1,3 @@
-# ==========================================
-# SISTEMA DE DELIVERY
-# Programa principal
-# ==========================================
-
 from pedidos import (
     registrar_pedido,
     mostrar_pedidos,
@@ -13,15 +8,12 @@ from pedidos import (
 
 from estadisticas import mostrar_estadisticas
 
-
-# ------------------------------------------
-# Menú principal
-# ------------------------------------------
+# función para mostrar el menú de opciones
 def mostrar_menu():
 
     print("\n")
     print("=" * 40)
-    print("      DELIVERY EXPRESS")
+    print("      PIZZA EXPRESS DELIVERY      ")
     print("=" * 40)
 
     print("1. Registrar pedido")
@@ -34,10 +26,7 @@ def mostrar_menu():
 
     print("=" * 40)
 
-
-# ------------------------------------------
-# Programa principal
-# ------------------------------------------
+# Programa
 def main():
 
     while True:
@@ -82,7 +71,4 @@ def main():
             print("\nOpción inválida. Intente nuevamente.")
 
 
-# ------------------------------------------
-# Inicio del programa
-# ------------------------------------------
 main()

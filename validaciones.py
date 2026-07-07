@@ -1,6 +1,6 @@
-# ============================
+# ===========================
 # VALIDACIONES DEL SISTEMA
-# ============================
+# ===========================
 
 # Función para validar que el usuario ingrese un texto.
 # No permite números ni campos vacíos.

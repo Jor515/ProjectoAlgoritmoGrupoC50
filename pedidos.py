@@ -6,31 +6,38 @@ pedidos = []
 # Variable para generar IDs automáticos
 ultimo_id = 1
 
+# zonas o barrios de entrega
+zonas_envio = {
+    1: {"nombre": "Centro", "costo_envio": 800},
+    2: {"nombre": "Barrio San Martin", "costo_envio": 1200},
+    3: {"nombre": "Villa Rio Negro", "costo_envio": 1500},
+    4: {"nombre": "400 Viviendas", "costo_envio": 1800},
+    5: {"nombre": "Barranqueras", "costo_envio": 2200},
+ }
 
-# --------------------------------------------------
-# Calcula el costo de envío según la zona
-# --------------------------------------------------
-def calcular_envio(zona):
+# menu de pizzas
+menu_pizzas = {
+    1: {"nombre": "Muzzarella", "precio_porcion": 350},
+    2: {"nombre": "Napolitana", "precio_porcion": 420},
+    3: {"nombre": "Fugazzeta", "precio_porcion": 400},
+    4: {"nombre": "Cuatro Quesos", "precio_porcion": 480},
+    5: {"nombre": "Especial", "precio_porcion": 520},
+}
 
-    if zona == "Centro":
-        return 1000
+# menu para seleccionar pizzas
+def mostrar_menu_pizzas():
+    print("\n--- Menú de Pizzas ---")
+    for numero, pizza in menu_pizzas.items():
+        print(f"{numero}. {pizza['nombre']} - ${pizza['precio_porcion']} por porción")
+        
+Porciones_maxima = 12
 
-    elif zona == "Norte":
-        return 1500
-
-    elif zona == "Sur":
-        return 1800
-
-    elif zona == "Este":
-        return 1600
-
-    elif zona == "Oeste":
-        return 1700
-
-
-# --------------------------------------------------
+def mostrar_menu_zonas():
+    print("\n--- Zonas de Entrega ---")
+    for numero, zona in zonas_envio.items():
+        print(f"{numero}. {zona['nombre']} - Costo de envío: ${zona['costo_envio']}")
+        
 # Registrar un pedido
-# --------------------------------------------------
 def registrar_pedido():
 
     global ultimo_id
@@ -40,38 +47,40 @@ def registrar_pedido():
     cliente = validar_texto("Nombre del cliente: ")
     telefono = validar_telefono()
 
+    mostrar_menu_zonas()
+    opcion_zona = validar_opcion_menu(zonas_envio)
+    zona_elegida = zonas_envio[opcion_zona]
+   
+    zona = zona_elegida["nombre"]
+    envio = zona_elegida["costo_envio"]
+   
     direccion = input("Dirección: ").strip()
 
     while direccion == "":
         print("La dirección no puede estar vacía.")
         direccion = input("Dirección: ").strip()
 
-    zona = validar_zona()
 
     productos = []
 
     subtotal = 0
 
     while True:
+        print("\nIngrese los detalles del producto:")
+        mostrar_menu_pizzas()
+        opcion = validar_opcion_menu(menu_pizzas)       
+        Tipo_pizza = menu_pizzas[opcion]
+        
+        print(f"\n{Tipo_pizza['nombre']} se vende por porción")
+        porciones = validar_cantidad_porciones(Porciones_maxima)
+        
+        total_producto = porciones * Tipo_pizza["precio_porcion"]
 
-        print("\n--- Agregar producto ---")
-
-        nombre_producto = input("Producto: ").title()
-
-        while nombre_producto == "":
-            print("Ingrese un nombre válido.")
-            nombre_producto = input("Producto: ").title()
-
-        cantidad = validar_entero("Cantidad: ")
-
-        precio = validar_decimal("Precio unitario: ")
-
-        total_producto = cantidad * precio
 
         producto = {
-            "nombre": nombre_producto,
-            "cantidad": cantidad,
-            "precio": precio,
+            "nombre": Tipo_pizza["nombre"],
+            "porciones": porciones,
+            "precio": Tipo_pizza["precio_porcion"],
             "total": total_producto
         }
 
@@ -83,8 +92,6 @@ def registrar_pedido():
 
         if seguir != "S":
             break
-
-    envio = calcular_envio(zona)
 
     total = subtotal + envio
 
@@ -108,10 +115,7 @@ def registrar_pedido():
 
     ultimo_id += 1
 
-
-# --------------------------------------------------
 # Mostrar todos los pedidos
-# --------------------------------------------------
 def mostrar_pedidos():
 
     if len(pedidos) == 0:
@@ -136,7 +140,7 @@ def mostrar_pedidos():
 
             print(
                 f"- {producto['nombre']} | "
-                f"{producto['cantidad']} x "
+                f"{producto['porciones']} porciones x "
                 f"${producto['precio']:.2f} = "
                 f"${producto['total']:.2f}"
             )
@@ -147,9 +151,7 @@ def mostrar_pedidos():
         print("Estado:", pedido["estado"])
 
 
-# --------------------------------------------------
 # Buscar pedido por ID
-# --------------------------------------------------
 def buscar_pedido():
 
     if len(pedidos) == 0:
@@ -175,9 +177,7 @@ def buscar_pedido():
     return None
 
 
-# --------------------------------------------------
 # Cambiar estado
-# --------------------------------------------------
 def cambiar_estado():
 
     pedido = buscar_pedido()
@@ -193,10 +193,7 @@ def cambiar_estado():
 
     print("Estado actualizado correctamente.")
 
-
-# --------------------------------------------------
 # Eliminar pedido
-# --------------------------------------------------
 def eliminar_pedido():
 
     pedido = buscar_pedido()
