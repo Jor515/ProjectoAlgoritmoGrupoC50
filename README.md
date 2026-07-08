@@ -1,6 +1,6 @@
 # Escenario 15: Sistema de Delivery - Pizzeria Express Delivery
 
-# Likns 
+# Links 
 Video: 
  https://www.youtube.com/watch?v=0FBtodnFXI4
 
@@ -18,14 +18,14 @@ github:
     comisión: 3(1.3)
 
 # Descripción del sistema:
-Tomamos como escenario a un sistema de gestión de pedidos de una servicio de delivery de una pizzeria, donde podemos:
+Tomamos como escenario a un sistema de gestión de pedidos de un servicio de delivery de una pizzeria, donde podemos:
  - Registrar pedidos: donde tendremos que registrar los datos del cliente, elegir el tipo de pizza junto con las cantidad de porciones e ingresar la dirección a donde mandar la pizza.
  
  - Consultar el listado completo de los pedidos registrados.
 
  - Buscar algun pedido puntual usando su numero de identificacion.
 
- - Cambiar el estado de un pedido (Pendiente, En preparacion, en camino, Entregado, Candelado).
+ - Cambiar el estado de un pedido (Pendiente, En preparacion, en camino, Entregado, Cancelado).
 
  - Eliminar pedidos registrados.
 
@@ -53,7 +53,7 @@ Tomamos como escenario a un sistema de gestión de pedidos de una servicio de de
     python main.py
 ```
 
-4. Una vez inciador, el programa muestra un menú con las siguientes opciones:
+4. Una vez inciado, el programa muestra un menú con las siguientes opciones:
 ```
    1. Registrar pedido
    2. Mostrar pedidos
